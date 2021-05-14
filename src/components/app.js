@@ -12,6 +12,7 @@ class App extends Component {
       user: {}
     }
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogin(data) {
@@ -45,6 +46,13 @@ class App extends Component {
     this.checkLoginStatus();
   }
   
+  handleLogout() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {}
+    })
+  }
+
   render() {
     return (
       <div className='app'>
@@ -54,14 +62,22 @@ class App extends Component {
               exact 
               path={"/"} 
               render={props => (
-                <Home {...props} loggedInStatus={this.state.loggedInStatus} />
+                <Home 
+                  {...props} 
+                  loggedInStatus={this.state.loggedInStatus} 
+                />
               )} 
             />
             <Route 
               exact 
               path={"/auth"} 
               render={props => (
-                <Authentication {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
+                <Authentication 
+                  {...props} 
+                  handleLogin={this.handleLogin} 
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.loggedInStatus} 
+                />
               )}
             />
           </Switch>
