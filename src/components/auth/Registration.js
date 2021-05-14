@@ -22,7 +22,25 @@ class Registration extends Component {
 
   handleSubmit(event) {
     event.preventDefault(event);
-    console.log("form submitted");
+    const {
+      email,
+      password,
+      password_confirmation
+    } = this.state;
+
+    axios.post("http://localhost:3000/registrations", {
+      user: {
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    },
+    { withCredentials: true }
+    ).then(response => {
+      console.log("registration res", response);
+    }).catch(error => {
+      console.log("registration error", error);
+    })
   }
 
   render () {
