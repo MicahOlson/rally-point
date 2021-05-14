@@ -4,13 +4,33 @@ import Home from './Home'
 import Authentication from './Authentication'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {}
+    }
+  }
+  
   render() {
     return (
       <div className='app'>
         <Router>
           <Switch>
-            <Route exact path={"/"} component={Home} />
-            <Route exact path={"/auth"} component={Authentication} />
+            <Route 
+              exact 
+              path={"/"} 
+              render={props => (
+                <Home {...props} loggedInStatus={this.state.loggedInStatus} />
+              )} 
+            />
+            <Route 
+              exact 
+              path={"/auth"} 
+              render={props => (
+                <Authentication {...props} loggedInStatus={this.state.loggedInStatus} />
+              )}
+            />
           </Switch>
         </Router>
       </div>
