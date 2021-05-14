@@ -1,12 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Home from './Home'
+import Authenticate from './Authenticate'
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <div className='app'>
-        <h1>DevCamp React Starter</h1>
-        <h2>React Redux Router</h2>
+        <Router>
+          <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/authenticate"} component={Authenticate} />
+          </Switch>
+        </Router>
       </div>
     );
   }
 }
+
+export default App
