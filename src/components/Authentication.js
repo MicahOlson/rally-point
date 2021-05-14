@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Registration from './auth/Registration'
+import Login from './auth/Login'
 
 class Authentication extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class Authentication extends Component {
       <div>
         <h1>Authentication</h1>
         <h1>Status: {this.props.loggedInStatus}</h1>
-        <Registration handleAuthSuccess={this.handleAuthSuccess}/>
+        <Registration handleAuthSuccess={this.handleAuthSuccess} />
+        <Login handleAuthSuccess={this.handleAuthSuccess} />
       </div>
     )
   }
