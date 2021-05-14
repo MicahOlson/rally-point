@@ -10,6 +10,14 @@ class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {}
     }
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin(data) {
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+      user: data.user
+    })
   }
   
   render() {
@@ -28,7 +36,7 @@ class App extends Component {
               exact 
               path={"/auth"} 
               render={props => (
-                <Authentication {...props} loggedInStatus={this.state.loggedInStatus} />
+                <Authentication {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
               )}
             />
           </Switch>
