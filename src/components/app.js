@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 import Home from './Home'
 import Authentication from './Authentication'
+import NavBar from './NavBar'
 
 class App extends Component {
   constructor() {
@@ -11,18 +12,18 @@ class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
       user: {}
     }
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
+    // this.handleLogin = this.handleLogin.bind(this);
+    // this.handleLogout = this.handleLogout.bind(this);
   }
 
-  handleLogin(data) {
+  handleLogin = (data) => {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       user: data.user
     })
   }
 
-  checkLoginStatus() {
+  checkLoginStatus = () => {
     axios.get("http://localhost:3000/logged_in", { withCredentials: true })
     .then(response => {
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
@@ -42,11 +43,11 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.checkLoginStatus();
   }
   
-  handleLogout() {
+  handleLogout = () => {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
       user: {}
@@ -57,6 +58,10 @@ class App extends Component {
     return (
       <div className='app'>
         <Router>
+        <NavBar 
+          handleLogout={this.handleLogout} 
+          loggedInStatus={this.state.loggedInStatus}
+        />
           <Switch>
             <Route 
               exact 
@@ -64,6 +69,7 @@ class App extends Component {
               render={props => (
                 <Home 
                   {...props} 
+                  // handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus} 
                 />
               )} 
@@ -75,7 +81,7 @@ class App extends Component {
                 <Authentication 
                   {...props} 
                   handleLogin={this.handleLogin} 
-                  handleLogout={this.handleLogout}
+                  // handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus} 
                 />
               )}
