@@ -61,6 +61,7 @@ class App extends Component {
         <NavBar 
           handleLogout={this.handleLogout} 
           loggedInStatus={this.state.loggedInStatus}
+          user={this.state.user}
         />
           <Switch>
             <Route 
