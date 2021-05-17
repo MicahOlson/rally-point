@@ -9,7 +9,7 @@ class Authentication extends Component {
     // this.handleAuthSuccess = this.handleAuthSuccess.bind(this);
     // this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
-  
+
   handleAuthSuccess = (data) => {
     this.props.handleLogin(data);
     this.props.history.push("/");
@@ -17,25 +17,41 @@ class Authentication extends Component {
 
   handleLogoutClick = () => {
     axios.delete("http://localhost:3000/logout", { withCredentials: true })
-    .then(response => {
-      this.props.handleLogout();
-    })
-    .catch(error => {
-      console.log("logout error", error);
-    })
+      .then(response => {
+        this.props.handleLogout();
+      })
+      .catch(error => {
+        console.log("logout error", error);
+      })
   }
 
   render() {
-
-    return (
-      <div>
-        <h1>Authentication</h1>
-        <h1>Status: {this.props.loggedInStatus}</h1>
-        {/* <button onClick={() => handleLogoutClick}>Log out</button> */}
-        <Registration handleAuthSuccess={this.handleAuthSuccess} />
-        <Login handleAuthSuccess={this.handleAuthSuccess} />
-      </div>
-    )
+    if ((Object.entries(this.props.user).length != 0) && (this.props.user.admin)) {
+      return (
+        <div>
+          <Registration
+            // handleAuthSuccess={this.handleAuthSuccess}
+            organizationId={this.props.user.organization_id}
+            />
+        </div>
+      )
+    } else if (Object.entries(this.props.user).length != 0) {
+      console.log(this.props.user);
+      return (
+        <div>
+          <h1>Status: {this.props.loggedInStatus}</h1>
+          <p>You are already logged in.</p>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h1>Status: {this.props.loggedInStatus}</h1>
+          {/* <button onClick={() => handleLogoutClick}>Log out</button> */}
+          <Login handleAuthSuccess={this.handleAuthSuccess} />
+        </div>
+      )
+    }
   }
 }
 
