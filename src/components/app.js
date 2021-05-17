@@ -80,6 +80,7 @@ class App extends Component {
               render={props => (
                 <Authentication 
                   {...props} 
+                  user={this.state.user}
                   handleLogin={this.handleLogin} 
                   // handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus} 
