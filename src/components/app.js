@@ -77,7 +77,7 @@ class App extends Component {
             />
             <Route 
               exact 
-              path={"/auth"} 
+              path={"/login"} 
               render={props => (
                 <Authentication 
                   {...props} 
