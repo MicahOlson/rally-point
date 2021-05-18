@@ -9,7 +9,6 @@ const Home = (props) => {
       <h1>Status: {props.loggedInStatus}</h1>
       {/* <Link to="/login">Authentication</Link> */}
       <ContactUs />
-      <span id="contact-us-nav"></span>
     </div>
   )
 };
