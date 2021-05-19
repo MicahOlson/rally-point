@@ -15,15 +15,14 @@ class App extends Component {
       orgName: "",
       user: {}
     }
-    // this.handleLogin = this.handleLogin.bind(this);
-    // this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogin = (data) => {
     this.setState({
       loggedInStatus: "LOGGED_IN",
-      user: data.user
+      user: data.user,
     })
+    this.handleGettingOrganizationName(data.user.organization_id)
   }
 
   checkLoginStatus = () => {
@@ -57,19 +56,21 @@ class App extends Component {
     })
   }
 
-  // handleGettingOrganizationName = (orgId) => {
-  //   axios.get(`http://localhost:3000/organizations/${orgId}`, { withCredentials: true })
-  //     .then(response => {
-  //       if (response.status === 200) {
-  //         this.setState({
-  //           orgName: response.data.name
-  //         });
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log("get org name error", error);
-  //     });
-  // }
+  handleGettingOrganizationName = (orgId) => {
+    axios.get(`http://localhost:3000/organizations/${orgId}`, { withCredentials: true })
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response);
+          this.setState({
+            orgName: response.data.name
+          });
+          console.log(this.state.orgName);
+        }
+      })
+      .catch(error => {
+        console.log("get org name error", error);
+      });
+  }
 
   render() {
     return (
@@ -79,8 +80,7 @@ class App extends Component {
             handleLogout={this.handleLogout}
             loggedInStatus={this.state.loggedInStatus}
             user={this.state.user}
-            // handleGettingOrganizationName={this.handleGettingOrganizationName}
-            // orgName={this.state.orgName}
+            orgName={this.state.orgName}
           />
           <Switch>
             <Route
@@ -109,16 +109,22 @@ class App extends Component {
             />
             <Route
               exact
-              path={"/app"}
+              path={"/members"}
               render={props => (
                 <MemberControl
                   {...props}
                   user={this.state.user}
                 />
-                // <EventControl
-                //   {...props}
-                //   user={this.state.user}
-                // />
+              )}
+            />
+            <Route
+              exact
+              path={"/members"}
+              render={props => (
+                <EventControl
+                  {...props}
+                  user={this.state.user}
+                />
               )}
             />
           </Switch>

@@ -35,7 +35,7 @@ const NavBar = props => {
   } else {
     return (
       // <NavBarWrapper>
-        <div><Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/app">Organization</Link> | Hi, {props.user.first_name} | <a href="" onClick={() => handleLogoutClick()}>Log Out</a></div>
+        <div><Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/app">{props.orgName}</Link> | Hi, {props.user.first_name} | <a href="" onClick={() => handleLogoutClick()}>Log Out</a></div>
       // </NavBarWrapper>
     )
   }
