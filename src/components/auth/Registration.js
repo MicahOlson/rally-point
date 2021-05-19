@@ -10,8 +10,6 @@ class Registration extends Component {
       password_confirmation: "",
       registrationErrors: ""
     }
-    // this.handleChange = this.handleChange.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = (event) => {
@@ -28,13 +26,7 @@ class Registration extends Component {
       password_confirmation
     } = this.state;
 
-    // axios.post("http://localhost:3000/registrations", {
     axios.post(`http://localhost:3000/organizations/${this.props.organizationId}/users`, {
-      // user: {
-      //   email: email,
-      //   password: password,
-      //   password_confirmation: password_confirmation
-      // }
       email: email,
       password: password,
       password_confirmation: password_confirmation
@@ -42,42 +34,12 @@ class Registration extends Component {
     { withCredentials: true }
     ).then(response => {
       if (response.data.status === "created") {
-        console.log(response.data)// this.props.handleAuthSuccess(response.data);
         document.querySelector("#confirmation").innerHTML = `${response.data.user.email} has been successfully registered.`
       }
     }).catch(error => {
       console.log("registration error", error);
     })
   }
-
-  // handleSubmit = (event) => {
-  //   event.preventDefault(event);
-  //   const {
-  //     email,
-  //     password,
-  //     password_confirmation
-  //   } = this.state;
-
-  //   // axios.post("http://localhost:3000/registrations", {
-  //     // user: {
-  //     //   email: email,
-  //     //   password: password,
-  //     //   password_confirmation: password_confirmation
-  //     // }
-  //     email: email,
-  //     password: password,
-  //     password_confirmation: password_confirmation
-  //   },
-  //   { withCredentials: true }
-  //   ).then(response => {
-  //     console.log(response)
-  //     if (response.data.status === "created") {
-  //       this.props.handleAuthSuccess(response.data);
-  //     }
-  //   }).catch(error => {
-  //     console.log("registration error", error);
-  //   })
-  // }
 
   render () {
     return (
