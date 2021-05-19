@@ -1,6 +1,11 @@
 import React from 'react'
 
 const ContactUs = () => {
+  const contactConfirmation = (event) => {
+    event.preventDefault();
+    document.querySelector("#contactConfirmation").innerHTML = "Thank you for your interest in Rally Point! A representative will be reaching out soon."
+  }
+
   return (
     <div>
       <h2 id="contact">Contact Us</h2>
@@ -9,66 +14,25 @@ const ContactUs = () => {
           type="text"
           name="name"
           placeholder="Name"
-          // value={this.state.email} 
-          // onChange={this.handleChange} 
           required
         />
         <input
           type="eamil"
           name="email"
           placeholder="Email"
-          // value={this.state.email} 
-          // onChange={this.handleChange} 
           required
         />
         <input
           type="textarea"
           name="message"
           placeholder="Message"
-          // value={this.state.email} 
-          // onChange={this.handleChange} 
           required
         />
-        <button type="submit">Submit</button>
+        <button onClick={() => contactConfirmation(event)}>Submit</button>
       </form>
+      <h3 id="contactConfirmation"></h3>
     </div>
   )
 }
-
-// // function ContactUs() {
-// //   return (
-// //     <div>
-// //       {/* <form onSubmit={document.querySelector("#contact-us-confirmation").innerHTML = "Thanks for reaching out to Rally Point! A representative will contact you shortly"}> */}
-// //       <form>
-// //         <input 
-// //           type="text" 
-// //           name="name" 
-// //           placeholder="Name" 
-// //           // value={this.state.email} 
-// //           // onChange={this.handleChange} 
-// //           required 
-// //         />
-// //         {/* <input 
-// //           type="email" 
-// //           name="email" 
-// //           placeholder="Email" 
-// //           value={this.state.email} 
-// //           onChange={this.handleChange} 
-// //           required 
-// //         />
-// //         <input 
-// //           type="password" 
-// //           name="password" 
-// //           placeholder="Password" 
-// //           value={this.state.password} 
-// //           onChange={this.handleChange} 
-// //           required 
-// //         /> */}
-// //         <button type="submit">Submit</button>
-// //       </form>
-// //       <p id="contact-us"></p>
-// //     </div>
-// //   );
-// // }
 
 export default ContactUs
