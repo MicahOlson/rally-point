@@ -94,10 +94,10 @@ class App extends Component {
 
           <BelowHeader>
           <div className="row">
-            <div className="col-left">
+            <div className="col-app-left">
               <SideBar />
             </div>
-            <div className="col-right">
+            <div className="col-app-right">
               <Switch>
                 <Route
                   exact
