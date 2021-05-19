@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
-import Home from './Home'
 import Authentication from './Authentication'
-import NavBar from './NavBar'
-import MemberControl from './members/MemberControl'
 import EventControl from './events/EventControl'
+import Home from './Home'
+import MemberControl from './members/MemberControl'
+import NavBar from './NavBar'
+import SideBar from './SideBar'
+import styled from 'styled-components'
+
+
+const BelowHeader = styled.section`
+  margin-top: 160px;
+`
 
 class App extends Component {
   constructor() {
@@ -74,60 +81,73 @@ class App extends Component {
 
   render() {
     return (
-      <div className='app'>
+      <div className="app">
         <Router>
-          <NavBar
-            handleLogout={this.handleLogout}
-            loggedInStatus={this.state.loggedInStatus}
-            user={this.state.user}
-            orgName={this.state.orgName}
-          />
-          <Switch>
-            <Route
-              exact
-              path={"/"}
-              render={props => (
-                <Home
-                  {...props}
-                  // handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.loggedInStatus}
-                />
-              )}
+          <div className="row">
+            <NavBar
+              handleLogout={this.handleLogout}
+              loggedInStatus={this.state.loggedInStatus}
+              user={this.state.user}
+              orgName={this.state.orgName}
             />
-            <Route
-              exact
-              path={"/auth"}
-              render={props => (
-                <Authentication
-                  {...props}
-                  user={this.state.user}
-                  handleLogin={this.handleLogin}
-                  // handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.loggedInStatus}
+          </div>
+
+          <BelowHeader>
+          <div className="row">
+            <div className="col-left">
+              <SideBar />
+            </div>
+            <div className="col-right">
+              <Switch>
+                <Route
+                  exact
+                  path={"/"}
+                  render={props => (
+                    <Home
+                      {...props}
+                      // handleLogout={this.handleLogout}
+                      loggedInStatus={this.state.loggedInStatus}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Route
-              exact
-              path={"/members"}
-              render={props => (
-                <MemberControl
-                  {...props}
-                  user={this.state.user}
+                <Route
+                  exact
+                  path={"/auth"}
+                  render={props => (
+                    <Authentication
+                      {...props}
+                      user={this.state.user}
+                      handleLogin={this.handleLogin}
+                      // handleLogout={this.handleLogout}
+                      loggedInStatus={this.state.loggedInStatus}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Route
-              exact
-              path={"/events"}
-              render={props => (
-                <EventControl
-                  {...props}
-                  user={this.state.user}
+                <Route
+                  exact
+                  path={"/members"}
+                  render={props => (
+                    <MemberControl
+                      {...props}
+                      user={this.state.user}
+                    />
+                  )}
                 />
-              )}
-            />
-          </Switch>
+                <Route
+                  exact
+                  path={"/events"}
+                  render={props => (
+                    <EventControl
+                      {...props}
+                      user={this.state.user}
+                    />
+                  )}
+                />
+              </Switch>
+            </div>
+          </div>
+          </BelowHeader>
+
         </Router>
       </div>
     );
