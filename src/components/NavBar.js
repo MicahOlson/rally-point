@@ -36,7 +36,7 @@ const NavBar = props => {
     return (
       // <NavBarWrapper>
       <div>
-        <Link to="/">Home</Link> | <a href="/#contact"> Contact Us</a> | <Link to="/events"> {props.orgName} Notifications</Link> | <Link to="/auth"> Add Members</Link> | <Link to="/members">Hi, {props.user.first_name}</Link> &rarr; <a href="" onClick={() => handleLogoutClick()}> Log Out</a>
+        <Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/events">{props.orgName} Notifications</Link> | <Link to="/members">Members Status</Link> | <Link to="/auth">Add Members</Link> | Logged in as {props.user.first_name} | <a href="/" onClick={() => handleLogoutClick()}>Log Out</a>
       </div>
       // </NavBarWrapper>
     )
@@ -44,7 +44,7 @@ const NavBar = props => {
     return (
       // <NavBarWrapper>
       <div>
-        <Link to="/">Home</Link> | <a href="/#contact"> Contact Us</a> | <Link to="/events"> {props.orgName} Notifications</Link> | <Link to="/members">Hi, {props.user.first_name}</Link> &rarr; <a href="" onClick={() => handleLogoutClick()}> Log Out</a>
+        <Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/events">{props.orgName} Notifications</Link> | <Link to="/members">Members Status</Link> | Logged in as {props.user.first_name} | <a href="/" onClick={() => handleLogoutClick()}>Log Out</a>
       </div>
       // </NavBarWrapper>
     )
