@@ -31,12 +31,27 @@ class EventControl extends React.Component {
     }
   }
 
-  handleAddingNewEventToList = (newKeg) => {
-    const newMainKegList = this.state.mainKegList.concat(newKeg);
-    this.setState({
-      mainKegList: newMainKegList,
-      formVisibleOnPage: false
-    });
+  // handleAddingNewEventToList = (newKeg) => {
+  //   const newMainKegList = this.state.mainKegList.concat(newKeg);
+  //   this.setState({
+  //     mainKegList: newMainKegList,
+  //     formVisibleOnPage: false
+  //   });
+  // }
+
+  handleAddingNewEventToList = (eventToAdd) => {
+    console.log(this.props.user.organization_id)
+    if (this.props.user.admin || this.props.user.id === id) {
+      axios.post(`http://localhost:3000/organizations/${this.props.user.organization_id}/events/`, { ...eventToAdd, withCredentials: true })
+        .then(response => {
+          if (response.status === 200) {
+            this.setState({ formVisibleOnPage: false });
+          }
+        })
+        .catch(error => {
+          console.log("get event error", error);
+        });
+    }
   }
 
   handleChangingSelectedEvent = (id, orgId) => {
@@ -89,7 +104,7 @@ class EventControl extends React.Component {
       .then(response => {
         if (response.status === 200) {
           this.setState({
-            orgName: response.data.name
+            orgName: response.data
           });
         }
       })
@@ -113,18 +128,40 @@ class EventControl extends React.Component {
       });
   }
 
+  handleCheckIn = () => {
+    axios.patch(`http://localhost:3000/organizations/${this.props.user.organization_id}/users/${this.props.user.id}`, { checked_in: true, withCredentials: true })
+    .then(response => {
+      if (response) {
+        // this.setState({
+        //   editing: false,
+        //   selectedEvent: null
+        // });
+        // this.componentDidMount();
+        // window.location.reload(true);
+        // this.handleGettingEventsList(this.props.user.organization_id)
+      }
+    })
+    .catch(error => {
+      console.log("check in error", error);
+    });
+  }
+
+  componentDidMount = () => {
+    this.handleGettingEventsList(this.props.user.organization_id);
+    this.handleGettingOrganizationName(this.props.user.organization_id)
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.editing) {
       currentlyVisibleState =
         <EditEventForm
-          event={this.state.selectedEvent}
+          notification={this.state.selectedEvent}
           onEditEvent={this.handleEditingEventInList}
         />
       buttonText = "Return to Event List"
     } else if (this.state.selectedEvent != null) {
-      this.handleGettingOrganizationName(this.state.selectedEvent.organization_id)
       currentlyVisibleState =
         <EventDetail
           event={this.state.selectedEvent}
@@ -133,29 +170,36 @@ class EventControl extends React.Component {
           onClickingEdit={this.handleEditClick}
         />
       buttonText = "Return to Event List";
-      } else if (this.state.formVisibleOnPage) {
-        currentlyVisibleState = 
-          <NewEventForm 
-            onNewEventCreation={this.handleAddingNewEventToList}
-          />;
-        buttonText = "Return to Event List";
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState =
+        <NewEventForm
+          onNewEventCreation={this.handleAddingNewEventToList}
+        />;
+      buttonText = "Return to Event List";
     } else {
-      this.handleGettingEventsList(this.props.user.organization_id)
       currentlyVisibleState =
         <EventList
+          user={this.props.user}
           eventsList={this.state.eventsList}
           onEventSelection={this.handleChangingSelectedEvent}
+          onCheckIn={this.handleCheckIn}
         />
       buttonText = "Add Event";
     }
-    return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
-        {/* <button onClick={() => this.handleEditingEventInList({id: 13, organization_id: 3, first_name: "NEW NAME"})}>Update Selected</button>
-        {console.log(this.state.selectedEvent)} */}
-      </React.Fragment>
-    );
+    if (this.props.user.admin) {
+      return (
+        <React.Fragment>
+          {currentlyVisibleState}
+          <button onClick={this.handleClick}>{buttonText}</button>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          {currentlyVisibleState}
+        </React.Fragment>
+      );
+    }
   }
 }
 
