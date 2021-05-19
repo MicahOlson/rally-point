@@ -3,6 +3,7 @@ import MemberList from './MemberList';
 import MemberDetail from './MemberDetail';
 import EditMemberForm from './EditMemberForm';
 import axios from 'axios'
+import { handleGettingEventsList, eventsList } from './../events/EventControl'
 
 class MemberControl extends React.Component {
   constructor(props) {
@@ -109,6 +110,11 @@ class MemberControl extends React.Component {
       });
   }
 
+  // handleResetCheckIns = () => {
+  //   handleGettingEventsList(this.props.user.organization_id)
+  //   console.log(eventsList)
+  // }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -139,6 +145,7 @@ class MemberControl extends React.Component {
       <React.Fragment>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
+        <button onClick={this.handleResetCheckIns}>Reset Checkins</button>
       </React.Fragment>
     );
   }
