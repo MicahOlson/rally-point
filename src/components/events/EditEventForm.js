@@ -16,6 +16,7 @@ function EditEventForm(props) {
   return (
     <React.Fragment>
       <ReusableForm
+        event={notification}
         formSubmissionHandler={handleEditEventFormSubmission}
         buttonText="Update Notification"
       />
