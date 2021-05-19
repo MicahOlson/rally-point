@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ReusableForm(props) {
+  console.log(props)
+  let priorNotification;
+  if (props.event) {
+    priorNotification = props.event.notification
+  }
   return (
     <React.Fragment>
       <form onSubmit={props.formSubmissionHandler}>
@@ -9,7 +14,7 @@ function ReusableForm(props) {
           type='text'
           name='notification'
           placeholder='Enter notification here'
-          defaultValue={props.notification}
+          defaultValue={priorNotification}
         />
         <button type='submit'>{props.buttonText}</button>
       </form>
