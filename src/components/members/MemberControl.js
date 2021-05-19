@@ -89,6 +89,10 @@ class MemberControl extends React.Component {
       });
   }
 
+  componentDidMount = () => {
+    this.handleGettingOrganizationName(this.props.user.organization_id);
+  }
+
   handleEditingMemberInList = (memberToEdit) => {
     axios.patch(`http://localhost:3000/organizations/${memberToEdit.organization_id}/users/${memberToEdit.id}`, { ...memberToEdit, withCredentials: true })
       .then(response => {
@@ -115,7 +119,6 @@ class MemberControl extends React.Component {
         />
       buttonText = "Return to Member List"
     } else if (this.state.selectedMember != null) {
-      this.handleGettingOrganizationName(this.state.selectedMember.organization_id)
       currentlyVisibleState =
         <MemberDetail
           member={this.state.selectedMember}
