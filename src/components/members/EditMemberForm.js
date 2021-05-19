@@ -99,7 +99,7 @@ function EditMemberForm(props) {
           name='checkedIn'
           defaultValue="true"
         />
-        <label for='checkIn'>
+        <label htmlFor='checkIn'>
           Check in
         </label>
         <button type='submit'>Update Details</button>
