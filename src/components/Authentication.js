@@ -6,13 +6,11 @@ import Login from './auth/Login'
 class Authentication extends Component {
   constructor(props) {
     super(props);
-    // this.handleAuthSuccess = this.handleAuthSuccess.bind(this);
-    // this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   handleAuthSuccess = (data) => {
     this.props.handleLogin(data);
-    this.props.history.push("/");
+    this.props.history.push("/events");
   }
 
   handleLogoutClick = () => {
