@@ -16,26 +16,36 @@ const NavBarWrapper = styled.section`
 const NavBar = props => {
   const handleLogoutClick = () => {
     axios.delete("http://localhost:3000/logout", { withCredentials: true })
-    .then(response => {
-      props.handleLogout();
-    })
-    .catch(error => {
-      console.log("logout error", error);
-    })
+      .then(response => {
+        props.handleLogout();
+      })
+      .catch(error => {
+        console.log("logout error", error);
+      })
   }
-
-  // props.handleGettingOrganizationName(props.user.organization_id)
 
   if (props.loggedInStatus === "NOT_LOGGED_IN") {
     return (
       // <NavBarWrapper>
-        <div><Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/login">Log In</Link></div>
+      <div>
+        <Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/auth">Log In</Link>
+      </div>
+      // </NavBarWrapper>
+    )
+  } else if (props.user.admin) {
+    return (
+      // <NavBarWrapper>
+      <div>
+        <Link to="/">Home</Link> | <a href="/#contact"> Contact Us</a> | <Link to="/events"> {props.orgName} Notifications</Link> | <Link to="/auth"> Add Members</Link> | <Link to="/members">Hi, {props.user.first_name}</Link> &rarr; <a href="" onClick={() => handleLogoutClick()}> Log Out</a>
+      </div>
       // </NavBarWrapper>
     )
   } else {
     return (
       // <NavBarWrapper>
-        <div><Link to="/">Home</Link> | <a href="/#contact">Contact Us</a> | <Link to="/app">{props.orgName}</Link> | Hi, {props.user.first_name} | <a href="" onClick={() => handleLogoutClick()}>Log Out</a></div>
+      <div>
+        <Link to="/">Home</Link> | <a href="/#contact"> Contact Us</a> | <Link to="/events"> {props.orgName} Notifications</Link> | <Link to="/members">Hi, {props.user.first_name}</Link> &rarr; <a href="" onClick={() => handleLogoutClick()}> Log Out</a>
+      </div>
       // </NavBarWrapper>
     )
   }
