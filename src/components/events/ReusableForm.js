@@ -9,6 +9,7 @@ function ReusableForm(props) {
           type='text'
           name='notification'
           placeholder='Enter notification here'
+          defaultValue={props.notification}
         />
         <button type='submit'>{props.buttonText}</button>
       </form>
