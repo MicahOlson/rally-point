@@ -13,7 +13,7 @@ function NewEventForm(props) {
     <React.Fragment>
       <ReusableForm
         formSubmissionHandler={handleNewEventFormSubmission}
-        buttonText="Add Event"
+        buttonText="Add Notification"
       />
     </React.Fragment>
   );
