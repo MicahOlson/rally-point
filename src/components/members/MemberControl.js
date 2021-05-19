@@ -90,6 +90,7 @@ class MemberControl extends React.Component {
   }
 
   componentDidMount = () => {
+    this.handleGettingMembersList(this.props.user.organization_id)
     this.handleGettingOrganizationName(this.props.user.organization_id);
   }
 
@@ -128,7 +129,6 @@ class MemberControl extends React.Component {
         />
       buttonText = "Return to Member List";
     } else {
-      this.handleGettingMembersList(this.props.user.organization_id)
       currentlyVisibleState =
         <MemberList
           membersList={this.state.membersList}
