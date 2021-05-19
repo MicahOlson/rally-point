@@ -8,8 +8,6 @@ function EditEventForm(props) {
     event.preventDefault();
     props.onEditEvent({
       notification: event.target.notification.value,
-      created_at: notification.created_at,
-      updated_at: notification.updated_at,
       organization_id: notification.organization_id,
       id: notification.id
     });
@@ -26,7 +24,7 @@ function EditEventForm(props) {
 }
 
 EditEventForm.propTypes = {
-  user: PropTypes.object,
+  // user: PropTypes.object,
   onEditEvent: PropTypes.func
 };
 
