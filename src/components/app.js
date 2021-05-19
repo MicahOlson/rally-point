@@ -96,7 +96,7 @@ class App extends Component {
             />
             <Route
               exact
-              path={"/login"}
+              path={"/auth"}
               render={props => (
                 <Authentication
                   {...props}
@@ -119,7 +119,7 @@ class App extends Component {
             />
             <Route
               exact
-              path={"/members"}
+              path={"/events"}
               render={props => (
                 <EventControl
                   {...props}
