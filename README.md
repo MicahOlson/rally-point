@@ -2,7 +2,7 @@
 ## _Manage Disruption Events and Stay Connected_
 ### by: Micah L. Olson
 ### created: 5/7/2021
-### updated: 5/14/2021
+### updated: 5/19/2021
 ---
 ## Project Proposal
 ### Project's Purpose or Goal: (What will it do for users?)
