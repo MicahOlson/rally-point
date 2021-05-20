@@ -6,8 +6,8 @@ function EventDetail(props) {
 
   return (
     <React.Fragment>
-      <h1>Event Details (EventDetail.js)</h1>
-      <p>{event.updated_at} - {event.event}</p>
+      <h2>Event Details</h2>
+      <p>{event.updated_at} - {event.notification}</p>
       <button onClick={props.onClickingEdit}>Update Details</button>
       <button onClick={() => onClickingDelete(event.id, event.organization_id)}>Remove Event Alert</button>
       <hr/>

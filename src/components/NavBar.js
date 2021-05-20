@@ -86,7 +86,7 @@ const NavBar = props => {
     return (
       <NavBarWrapper>
         <p>
-          Welcome, {props.user.first_name}!
+          Welcome, {props.user.first_name} &#64;{props.orgName}!
         </p>
         <div>
           <span>
@@ -113,7 +113,7 @@ const NavBar = props => {
     return (
       <NavBarWrapper>
         <p>
-          Welcome, {props.user.first_name}!
+          Welcome, {props.user.first_name} &#64;{props.orgName}!
         </p>
         <div>
           <span>

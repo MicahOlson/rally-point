@@ -12,6 +12,9 @@ import styled from 'styled-components'
 
 const BelowHeader = styled.section`
   margin-top: 160px;
+  h1 {
+    display: none;
+  }
 `
 
 class App extends Component {
@@ -54,6 +57,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.checkLoginStatus();
+    this.handleGettingOrganizationName(this.state.user.organization_id)
   }
 
   handleLogout = () => {
@@ -93,6 +97,7 @@ class App extends Component {
           </div>
 
           <BelowHeader>
+          <h1>Rally Point</h1>
           <div className="row">
             <div className="col-app-left">
               <SideBar />

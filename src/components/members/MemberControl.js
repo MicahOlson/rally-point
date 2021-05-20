@@ -4,6 +4,17 @@ import MemberDetail from './MemberDetail';
 import EditMemberForm from './EditMemberForm';
 import axios from 'axios'
 import { handleGettingEventsList, eventsList } from './../events/EventControl'
+import styled from 'styled-components'
+
+const MemberControlWrapper = styled.section`
+  margin-left: 50px;
+  font-size: 18px;
+  color: #5E5E5E;
+  h2 {
+    color: #9E2A2B;
+    font-size: 28px;
+  }
+`
 
 class MemberControl extends React.Component {
   constructor(props) {
@@ -139,13 +150,17 @@ class MemberControl extends React.Component {
         <MemberList
           membersList={this.state.membersList}
           onMemberSelection={this.handleChangingSelectedMember}
+          orgName={this.state.orgName}
         />
+      buttonText = "Reset Checkins"
     }
     return (
       <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
-        <button onClick={this.handleResetCheckIns}>Reset Checkins</button>
+        <MemberControlWrapper>
+          {currentlyVisibleState}
+          <button onClick={this.handleClick}>{buttonText}</button>
+          {/* <button onClick={this.handleResetCheckIns}>Reset Checkins</button> */}
+        </MemberControlWrapper>
       </React.Fragment>
     );
   }

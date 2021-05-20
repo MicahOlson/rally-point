@@ -3,13 +3,12 @@ import Event from './Event';
 import PropTypes from 'prop-types';
 
 function EventList(props) {
-
   const eventsSorted = props.eventsList.sort((a, b) => (a.updated_at < b.updated_at) ? 1 : -1)
-  console.log(`User checked in? ${props.user.checked_in}`)
+
   if (props.user.checked_in) {
     return (
       <React.Fragment>
-        <h1>EventList.js reached</h1>
+        <h2>Disruption Events</h2>
         {eventsSorted.map((event) =>
           <Event
             whenEventClicked={props.onEventSelection}
@@ -26,7 +25,7 @@ function EventList(props) {
   }
   return (
     <React.Fragment>
-      <h1>EventList.js reached</h1>
+      <h2>Disruption Events</h2>
       <button type="submit" onClick={props.onCheckIn}>Check in!!!</button>
       {eventsSorted.map((event) =>
         <Event

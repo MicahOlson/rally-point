@@ -4,6 +4,17 @@ import EditEventForm from './EditEventForm';
 import EventDetail from './EventDetail';
 import EventList from './EventList';
 import NewEventForm from './NewEventForm'
+import styled from 'styled-components'
+
+const EventControlWrapper = styled.section`
+  margin-left: 50px;
+  font-size: 18px;
+  color: #5E5E5E;
+  h2 {
+    color: #9E2A2B;
+    font-size: 28px;
+  }
+`
 
 class EventControl extends React.Component {
   constructor(props) {
@@ -130,20 +141,20 @@ class EventControl extends React.Component {
 
   handleCheckIn = () => {
     axios.patch(`http://localhost:3000/organizations/${this.props.user.organization_id}/users/${this.props.user.id}`, { checked_in: true, withCredentials: true })
-    .then(response => {
-      if (response) {
-        // this.setState({
-        //   editing: false,
-        //   selectedEvent: null
-        // });
-        // this.componentDidMount();
-        // window.location.reload(true);
-        // this.handleGettingEventsList(this.props.user.organization_id)
-      }
-    })
-    .catch(error => {
-      console.log("check in error", error);
-    });
+      .then(response => {
+        if (response) {
+          // this.setState({
+          //   editing: false,
+          //   selectedEvent: null
+          // });
+          // this.componentDidMount();
+          // window.location.reload(true);
+          // this.handleGettingEventsList(this.props.user.organization_id)
+        }
+      })
+      .catch(error => {
+        console.log("check in error", error);
+      });
   }
 
   componentDidMount = () => {
@@ -180,6 +191,7 @@ class EventControl extends React.Component {
       currentlyVisibleState =
         <EventList
           user={this.props.user}
+          orgName={this.state.orgName}
           eventsList={this.state.eventsList}
           onEventSelection={this.handleChangingSelectedEvent}
           onCheckIn={this.handleCheckIn}
@@ -189,14 +201,18 @@ class EventControl extends React.Component {
     if (this.props.user.admin) {
       return (
         <React.Fragment>
-          {currentlyVisibleState}
-          <button onClick={this.handleClick}>{buttonText}</button>
+          <EventControlWrapper>
+            {currentlyVisibleState}
+            <button onClick={this.handleClick}>{buttonText}</button>
+          </EventControlWrapper>
         </React.Fragment>
       );
     } else {
       return (
         <React.Fragment>
-          {currentlyVisibleState}
+          <EventControlWrapper>
+            {currentlyVisibleState}
+          </EventControlWrapper>
         </React.Fragment>
       );
     }

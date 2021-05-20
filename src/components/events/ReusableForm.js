@@ -10,7 +10,7 @@ function ReusableForm(props) {
   return (
     <React.Fragment>
       <form onSubmit={props.formSubmissionHandler}>
-        <input
+        <textarea
           type='text'
           name='notification'
           placeholder='Enter notification here'

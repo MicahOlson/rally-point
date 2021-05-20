@@ -7,7 +7,7 @@ import firetruck from './../../static/assets/imgs/fire-truck.png'
 import snowplow from './../../static/assets/imgs/snowplow.png'
 
 const HomeWrapper = styled.section`
-  margin-top: -28px;
+  margin-top: -18px;
   #lightning {
     width: 99%;
   }
@@ -24,9 +24,6 @@ const HomeWrapper = styled.section`
     margin-left: 10px;
     margin-right: 10px;
   }
-  h1 {
-    display: none;
-  }
   h2 {
     color: #9E2A2B;
     font-size: 28px;
@@ -36,21 +33,20 @@ const HomeWrapper = styled.section`
     font-size: 24px;
   }
   div {
-    margin-top: 40px;
+    margin-top: 30px;
   }
 `
 
 const Home = () => {
   return (
     <HomeWrapper>
-      <h1>Rally Point</h1>
       <div>
         <img src={lightning} alt="" id="lightning" />
       </div>
       <div className="row">
         <div className="col-home-left text-block">
           <h2>
-            Subheading
+            Heading
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
@@ -67,7 +63,7 @@ const Home = () => {
         </div>
         <div className="col-home-right">
           <h2>
-            Subheading
+            Heading
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
@@ -78,7 +74,7 @@ const Home = () => {
       <div className="row">
         <div className="col-home-left text-block">
           <h2>
-            Subheading
+            Heading
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
