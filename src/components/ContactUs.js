@@ -6,13 +6,20 @@ const ContactUsWrapper = styled.section`
   input, textarea {
     display: block;
   }
-  .col-home-left, .col-home-right {
+  .col-contact-left {
     flex: 1;
   }
+  .col-contact-right {
+    flex: 2;
+  }
   #contact-text {
-    margin-top: 50px;
+    margin-top: 75px;
     margin-left: 50px;
   }
+  input, textarea {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
 `
 
 const ContactUs = () => {

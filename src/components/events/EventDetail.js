@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function EventDetail(props) {
   const { event, onClickingDelete } = props;
-
+  
   return (
     <React.Fragment>
       <h2>Event Details</h2>

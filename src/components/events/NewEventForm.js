@@ -11,6 +11,7 @@ function NewEventForm(props) {
   }
   return (
     <React.Fragment>
+      <h2>Add a New Disruption Event</h2>
       <ReusableForm
         formSubmissionHandler={handleNewEventFormSubmission}
         buttonText="Add Notification"

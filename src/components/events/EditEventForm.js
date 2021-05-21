@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReusableForm from './ReusableForm';
-import styled from 'styled-components'
-
-const EditEventFormWrapper = styled.section`
-  textarea {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-`
 
 function EditEventForm(props) {
   const { notification } = props;
@@ -24,14 +15,12 @@ function EditEventForm(props) {
 
   return (
     <React.Fragment>
-      <EditEventFormWrapper>
-        <h2>Edit Event Details</h2>
-        <ReusableForm
-          event={notification}
-          formSubmissionHandler={handleEditEventFormSubmission}
-          buttonText="Update Notification"
-        />
-      </EditEventFormWrapper>
+      <h2>Edit Event Details</h2>
+      <ReusableForm
+        event={notification}
+        formSubmissionHandler={handleEditEventFormSubmission}
+        buttonText="Update Notification"
+      />
     </React.Fragment>
   );
 }

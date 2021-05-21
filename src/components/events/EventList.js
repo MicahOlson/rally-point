@@ -1,6 +1,15 @@
 import React from 'react';
 import Event from './Event';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const EventListWrapper = styled.section`
+  button {
+    background-color: #9E2A2B;
+    color: #DAD7CD;
+    font-size: 28px;
+  }
+`
 
 function EventList(props) {
   const eventsSorted = props.eventsList.sort((a, b) => (a.updated_at < b.updated_at) ? 1 : -1)
@@ -25,6 +34,7 @@ function EventList(props) {
   }
   return (
     <React.Fragment>
+      <EventListWrapper>
       <h2>Disruption Events</h2>
       <button type="submit" onClick={props.onCheckIn}>Check in!!!</button>
       {eventsSorted.map((event) =>
@@ -38,6 +48,7 @@ function EventList(props) {
           key={event.id}
         />
       )}
+      </EventListWrapper>
     </React.Fragment>
   );
 }
