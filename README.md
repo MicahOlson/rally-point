@@ -2,11 +2,7 @@
 ## _Manage Disruption Events and Stay Connected_
 ### by: Micah L. Olson
 ### created: 5/7/2021
-### updated: 5/21/2021
-
----
-
-### _This project was created solely for the education of the author(s) and is not in a complete or portfolio-ready state. It should not be considered representative of professional work._
+### updated: 5/26/2021
 
 ---
 
@@ -69,6 +65,27 @@ This is the front-end to *Rally Point*, an application for organizations and the
     `control-c`
 
 * If it doesn't launch automatically, type **localhost:3001** into your browser's address bar and hit `enter`.
+
+* Properly setting up the **backend application** mentioned above will supply 3 default users for demonstration purposes:
+  * Jane Smith, MyCompany
+    * Email: jane@mycompany.com
+    * Password: jane123
+    * Admin for MyCompany with ability to 
+      * add, edit, delete event posts
+      * add, edit, delete new MyCompany members
+  * Bob Philips, MyCompany
+    * Email: bob@mycompany.com
+    * Password: bob123
+    * Standard member of MyCompany with limited rights to
+      * view event posts
+      * check in for new events
+      * edit, delete personal profile
+  * Keith Johnson, YourCompany
+    * Email: keith@yourcompany.com
+    * Password: keith123
+    * Admin for YourCompany with ability to 
+      * add, edit, delete event posts
+      * add, edit, delete new YourCompany members
 
 ---
 
